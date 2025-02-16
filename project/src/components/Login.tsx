@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Lock } from 'lucide-react';
 import { useStore } from '../store';
+import rgukt from "../assets/rgukt.jpeg";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -37,6 +38,27 @@ export default function Login() {
         hostelRoom: 'A-101',
         phoneNumber: '9090456789',
       },
+      'n190974@rguktn.ac.in': {
+        id: 'N190974',
+        name: 'Dampi Hari Babu',
+        role: 'student',
+        department: 'CSE',
+        year: 4,
+        branch: 'Computer Science',
+        hostelRoom: 'A-101',
+        phoneNumber: '9090456789',
+      },
+      'n190004@rguktn.ac.in': {
+        id: 'N190004',
+        name: 'Basava Gnaneshwar',
+        role: 'student',
+        department: 'ECE',
+        year: 4,
+        branch: 'Electronics',
+        hostelRoom: 'GF-32',
+        phoneNumber: '1234567890',
+      },
+
       'manoj@example.com': {
         id: 'N190050',
         name: 'Manoj Nandyala',
@@ -58,10 +80,10 @@ export default function Login() {
         phoneNumber: '1122334455',
       },
       // Caretakers
-      'prabhudas@example.com': {
-        id: '4',
+      'n191130@rguktn.ac.in': {
+        id: 'N191130',
         name: 'Prabhudas Verma',
-        role: 'caretaker',
+        role: 'student',
         department: 'N/A',
         year: 0,
         branch: 'N/A',
@@ -131,19 +153,21 @@ export default function Login() {
     }
 
     // Login successful
-    setUser(userDetails);
+    setUser(userDetails);  // Ensure the correct user object is set
+    console.log("Logged-in User:", userDetails);
     navigate('/');
+    
   };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center">
       <div className="max-w-md w-full mx-auto">
         <div className="text-center mb-8">
-          <img
-            src="https://rgukt.ac.in/assets/images/RGUKT-Logo.png"
-            alt="RGUKT Logo"
-            className="h-20 mx-auto mb-4"
-          />
+        <img
+  src={rgukt}
+  alt="RGUKT Logo"
+  className="h-20 mx-auto mb-4"
+/>
           <h2 className="text-3xl font-bold text-gray-900">
             RGUKT Leave Management System
           </h2>
