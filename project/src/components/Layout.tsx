@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, Bell } from 'lucide-react';
 import { useStore } from '../store';
+import rgukt from '../assets/rgukt.jpeg';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,11 +23,11 @@ export default function Layout({ children }: LayoutProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center space-x-4">
-              <img
-                src="https://rgukt.ac.in/assets/images/RGUKT-Logo.png"
-                alt="RGUKT Logo"
-                className="h-10"
-              />
+            <img
+  src={rgukt}
+  alt="RGUKT Logo"
+  className="h-20 mx-auto mb-4"
+/>
               <h1 className="text-xl font-semibold">
                 RGUKT Leave Management System
               </h1>

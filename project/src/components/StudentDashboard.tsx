@@ -348,24 +348,26 @@ export default function StudentDashboard() {
           });
   
           if (!response.ok) {
-            throw new Error('Failed to communicate with the server');
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Face verification failed');
           }
   
           const data = await response.json();
-          console.log("Recognized Name:", data.name);
-          console.log("Logged-in User ID:", user?.id);
+          console.log("Recognition result:", data);
   
-          // Ensure that the recognized face matches the logged-in user's ID
-          if (data.name === user?.id) {
-            alert("Face verified! You can now apply for a leave request.");
+          // Check if the recognized face matches the logged-in user
+          if (data.name === user?.id && data.confidence > 0.6) {
+            alert(`Face verified with ${(data.confidence * 100).toFixed(1)}% confidence!`);
             setIsFaceVerified(true);
+            setShowCamera(false);
           } else {
-            alert("Face not matching! You are not permitted to apply for leave.");
+            alert("Face verification failed. Please try again.");
             setIsFaceVerified(false);
           }
         } catch (error) {
-          console.error("Error recognizing face:", error);
-          alert('There was an error with face recognition. Please try again.');
+          console.error("Error during face verification:", error);
+          alert(error instanceof Error ? error.message : 'Face verification failed');
+          setIsFaceVerified(false);
         }
       } else {
         alert("No image captured. Please try again.");
